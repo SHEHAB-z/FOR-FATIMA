@@ -426,19 +426,19 @@
         // ضبط مستوى الصوت ليكون خفيف (30% من الصوت الأصلي)
         gainNode.gain.value = 0.3;
         
-        // إنشاء تأثير الصدى الخفيف
+        // إنشاء تأثير الصدى البسيط جداً
         async function createReverb() {
             const rate = audioContext.sampleRate;
-            const length = rate * 1.5; // صدى لمدة 1.5 ثانية (أقصر)
+            const length = rate * 0.5; // صدى لمدة نصف ثانية فقط
             const impulse = audioContext.createBuffer(2, length, rate);
             const impulseL = impulse.getChannelData(0);
             const impulseR = impulse.getChannelData(1);
             
             for (let i = 0; i < length; i++) {
                 const n = length - i;
-                // تقليل شدة الصدى بضرب في 0.4
-                impulseL[i] = (Math.random() * 2 - 1) * Math.pow(n / length, 3) * 0.4;
-                impulseR[i] = (Math.random() * 2 - 1) * Math.pow(n / length, 3) * 0.4;
+                // صدى بسيط جداً (10% فقط)
+                impulseL[i] = (Math.random() * 2 - 1) * Math.pow(n / length, 4) * 0.1;
+                impulseR[i] = (Math.random() * 2 - 1) * Math.pow(n / length, 4) * 0.1;
             }
             
             convolver.buffer = impulse;
