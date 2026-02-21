@@ -2,11 +2,14 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="theme-color" content="#1a0b2e">
     <title>For Fatima</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Aref+Ruqaa:wght@400;700&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Aref+Ruqaa:wght@700&family=Amiri:wght@400&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -19,9 +22,12 @@
             overflow-x: hidden;
             position: relative;
             min-height: 100vh;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            touch-action: manipulation;
         }
 
-        /* خلفية فضائية سينمائية */
+        /* خلفية فضائية سينمائية محسّنة للأداء */
         .animated-background {
             position: fixed;
             top: 0;
@@ -39,9 +45,12 @@
             background-size: 400% 400%;
             animation: spaceFlow 20s ease infinite;
             overflow: hidden;
+            will-change: background-position;
+            transform: translateZ(0);
+            -webkit-transform: translateZ(0);
         }
 
-        /* النجوم المتحركة */
+        /* النجوم المتحركة - مبسطة للموبايل */
         .animated-background::before {
             content: '';
             position: absolute;
@@ -52,24 +61,27 @@
                 radial-gradient(2px 2px at 60% 70%, white, transparent),
                 radial-gradient(1px 1px at 50% 50%, white, transparent),
                 radial-gradient(1px 1px at 80% 10%, white, transparent),
-                radial-gradient(2px 2px at 90% 60%, white, transparent),
-                radial-gradient(1px 1px at 33% 80%, white, transparent),
-                radial-gradient(1px 1px at 15% 90%, white, transparent);
+                radial-gradient(2px 2px at 90% 60%, white, transparent);
             background-size: 200% 200%;
             animation: stars 60s linear infinite;
             opacity: 0.8;
+            will-change: transform;
+            transform: translateZ(0);
+            -webkit-transform: translateZ(0);
         }
 
-        /* سديم متوهج */
+        /* سديم متوهج - مبسط */
         .animated-background::after {
             content: '';
             position: absolute;
             width: 100%;
             height: 100%;
             background: radial-gradient(ellipse at 30% 40%, rgba(168, 93, 154, 0.3) 0%, transparent 50%),
-                        radial-gradient(ellipse at 70% 60%, rgba(107, 61, 122, 0.3) 0%, transparent 50%),
-                        radial-gradient(ellipse at 50% 80%, rgba(139, 77, 138, 0.2) 0%, transparent 50%);
+                        radial-gradient(ellipse at 70% 60%, rgba(107, 61, 122, 0.3) 0%, transparent 50%);
             animation: nebula 25s ease-in-out infinite;
+            will-change: opacity, transform;
+            transform: translateZ(0);
+            -webkit-transform: translateZ(0);
         }
 
         @keyframes spaceFlow {
@@ -91,7 +103,7 @@
             50% { opacity: 0.9; transform: scale(1.1); }
         }
 
-        /* شاشة الانترو */
+        /* شاشة الانترو محسّنة */
         .intro-screen {
             position: fixed;
             top: 0;
@@ -105,9 +117,10 @@
             z-index: 9999;
             animation: fadeOut 1s ease 4s forwards;
             overflow: hidden;
+            will-change: opacity;
         }
 
-        /* نجوم في الانترو */
+        /* نجوم في الانترو - مبسطة */
         .intro-screen::before {
             content: '';
             position: absolute;
@@ -116,11 +129,10 @@
             background-image: 
                 radial-gradient(2px 2px at 10% 20%, white, transparent),
                 radial-gradient(2px 2px at 90% 80%, white, transparent),
-                radial-gradient(1px 1px at 30% 60%, white, transparent),
-                radial-gradient(1px 1px at 70% 40%, white, transparent),
-                radial-gradient(2px 2px at 50% 90%, white, transparent);
+                radial-gradient(1px 1px at 50% 50%, white, transparent);
             background-size: 100% 100%;
             animation: twinkle 3s ease-in-out infinite;
+            will-change: opacity;
         }
 
         @keyframes twinkle {
@@ -130,18 +142,18 @@
 
         .intro-text {
             font-family: 'Aref Ruqaa', serif;
-            font-size: 3.5rem;
+            font-size: 2.5rem;
             color: #ff6b9d;
             text-shadow: 
                 0 0 10px rgba(255, 107, 157, 0.8),
                 0 0 20px rgba(255, 107, 157, 0.6),
-                0 0 30px rgba(255, 107, 157, 0.4),
-                0 0 40px rgba(168, 93, 154, 0.5),
-                0 0 70px rgba(168, 93, 154, 0.3),
-                0 0 100px rgba(168, 93, 154, 0.2);
+                0 0 30px rgba(255, 107, 157, 0.4);
             animation: cinematicGlow 2s ease-in-out infinite, fadeInOut 4s ease;
             position: relative;
             z-index: 2;
+            will-change: transform, text-shadow;
+            padding: 0 20px;
+            text-align: center;
         }
 
         @keyframes cinematicGlow {
@@ -149,21 +161,15 @@
                 text-shadow: 
                     0 0 10px rgba(255, 107, 157, 0.8),
                     0 0 20px rgba(255, 107, 157, 0.6),
-                    0 0 30px rgba(255, 107, 157, 0.4),
-                    0 0 40px rgba(168, 93, 154, 0.5),
-                    0 0 70px rgba(168, 93, 154, 0.3),
-                    0 0 100px rgba(168, 93, 154, 0.2);
+                    0 0 30px rgba(255, 107, 157, 0.4);
                 transform: scale(1);
             }
             50% { 
                 text-shadow: 
                     0 0 20px rgba(255, 107, 157, 1),
                     0 0 30px rgba(255, 107, 157, 0.8),
-                    0 0 40px rgba(255, 107, 157, 0.6),
-                    0 0 60px rgba(168, 93, 154, 0.7),
-                    0 0 90px rgba(168, 93, 154, 0.5),
-                    0 0 120px rgba(168, 93, 154, 0.3);
-                transform: scale(1.05);
+                    0 0 40px rgba(255, 107, 157, 0.6);
+                transform: scale(1.03);
             }
         }
 
@@ -339,23 +345,72 @@
 
         @media (max-width: 768px) {
             .content-box {
-                padding: 30px 20px;
+                padding: 25px 15px;
+                margin: 0 10px;
             }
             
             .page-title {
-                font-size: 2rem;
+                font-size: 1.8rem;
             }
             
             .message-text {
-                font-size: 1.1rem;
+                font-size: 1rem;
+                line-height: 1.9;
             }
             
             .quran-verse {
-                font-size: 1.5rem;
+                font-size: 1.3rem;
+                line-height: 2.2;
+                padding: 15px;
             }
             
             .corner-text {
-                font-size: 1rem;
+                font-size: 0.9rem;
+            }
+            
+            .intro-text {
+                font-size: 1.8rem;
+            }
+            
+            .next-button {
+                font-size: 1.1rem;
+                padding: 12px 30px;
+            }
+            
+            /* تقليل التأثيرات على الموبايل */
+            .animated-background::before {
+                animation: none;
+                opacity: 0.6;
+            }
+            
+            .animated-background::after {
+                animation: nebula 40s ease-in-out infinite;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .page {
+                padding: 60px 10px 30px;
+            }
+            
+            .content-box {
+                padding: 20px 12px;
+            }
+            
+            .page-title {
+                font-size: 1.5rem;
+                margin-bottom: 20px;
+            }
+            
+            .message-text {
+                font-size: 0.95rem;
+                line-height: 1.8;
+            }
+            
+            .quran-verse {
+                font-size: 1.2rem;
+                line-height: 2;
+                margin: 20px 0;
             }
         }
     </style>
@@ -414,26 +469,46 @@
     </div>
 
     <script>
-        // إعداد الصوت بدون صدى
+        // إعداد الصوت بدون صدى - محسّن للموبايل
         const audio = document.getElementById('bgAudio');
-        const audioContext = new (window.AudioContext || window.webkitAudioContext)();
-        const source = audioContext.createMediaElementSource(audio);
-        const gainNode = audioContext.createGain();
+        let audioContext, source, gainNode;
+        let audioInitialized = false;
         
-        // ضبط مستوى الصوت ليكون خفيف (30% من الصوت الأصلي)
-        gainNode.gain.value = 0.3;
-        
-        // توصيل الصوت مباشرة بدون صدى
-        source.connect(gainNode);
-        gainNode.connect(audioContext.destination);
+        function initAudio() {
+            if (audioInitialized) return;
+            
+            try {
+                audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                source = audioContext.createMediaElementSource(audio);
+                gainNode = audioContext.createGain();
+                
+                // ضبط مستوى الصوت ليكون خفيف (30% من الصوت الأصلي)
+                gainNode.gain.value = 0.3;
+                
+                // توصيل الصوت مباشرة بدون صدى
+                source.connect(gainNode);
+                gainNode.connect(audioContext.destination);
+                
+                audioInitialized = true;
+            } catch (e) {
+                console.log('Audio context not supported');
+                audio.volume = 0.3; // استخدام volume العادي كبديل
+            }
+        }
         
         // تشغيل الصوت بعد انتهاء الانترو
         setTimeout(() => {
-            audioContext.resume().then(() => {
-                audio.play().catch(e => {
-                    console.log('Audio autoplay prevented. User interaction needed.');
+            if (audioContext) {
+                audioContext.resume().then(() => {
+                    audio.play().catch(e => {
+                        console.log('Audio autoplay prevented.');
+                    });
                 });
-            });
+            } else {
+                audio.play().catch(e => {
+                    console.log('Audio autoplay prevented.');
+                });
+            }
         }, 4000);
 
         // الانتقال للصفحة التالية
@@ -442,14 +517,34 @@
             document.getElementById('page2').classList.add('active');
         }
 
-        // تشغيل الصوت عند أي تفاعل من المستخدم
-        document.addEventListener('click', function() {
-            audioContext.resume().then(() => {
+        // تشغيل الصوت عند أي تفاعل من المستخدم (مهم للموبايل)
+        function handleUserInteraction() {
+            initAudio();
+            
+            if (audioContext) {
+                audioContext.resume().then(() => {
+                    if (audio.paused) {
+                        audio.play().catch(e => console.log('Audio play failed'));
+                    }
+                });
+            } else {
                 if (audio.paused) {
                     audio.play().catch(e => console.log('Audio play failed'));
                 }
-            });
-        }, { once: true });
+            }
+        }
+        
+        document.addEventListener('click', handleUserInteraction, { once: true });
+        document.addEventListener('touchstart', handleUserInteraction, { once: true });
+        
+        // تحسين الأداء: إيقاف الأنيميشن عند عدم الرؤية
+        document.addEventListener('visibilitychange', function() {
+            if (document.hidden && audio) {
+                audio.pause();
+            } else if (!document.hidden && audio && audioInitialized) {
+                audio.play().catch(e => console.log('Resume failed'));
+            }
+        });
     </script>
 </body>
 </html>
